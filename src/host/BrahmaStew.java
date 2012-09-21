@@ -4,8 +4,7 @@ import java.io.IOException;
 
 public class BrahmaStew {
 
-	public static void main(String[] args) throws ClassNotFoundException,
-			InstantiationException, IllegalAccessException, IOException {
+	public static void main(String[] args) {
 		BrahmaStewHost host = new BrahmaStewHost();
 	}
 }
