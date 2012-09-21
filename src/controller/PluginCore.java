@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import plugin.Plugin;
 
-import view.GUIWhyNot;
+import view.HostView;
 
 public class PluginCore {
 
@@ -14,7 +14,7 @@ public class PluginCore {
 
 	// Plugin manager
 	PluginManager pluginManager;
-	GUIWhyNot GUI = new GUIWhyNot();
+	HostView GUI = new HostView();
 
 	public PluginCore() {
 		idToPlugin = new HashMap<String, Plugin>();

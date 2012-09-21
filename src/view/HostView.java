@@ -20,7 +20,7 @@ import controller.PluginCore;
 
 import plugin.Plugin;
 
-public class GUIWhyNot extends JFrame {
+public class HostView extends JFrame {
 	public JFrame frame;
 	private JPanel contentPane;
 	public JLabel bottomLabel;
@@ -29,7 +29,7 @@ public class GUIWhyNot extends JFrame {
 	private JPanel centerEnvelope;
 	private Plugin currentPlugin;
 
-	public GUIWhyNot() {
+	public HostView() {
 		// Lets create the elements that we will need
 		frame = new JFrame("Pluggable Board Application");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
