@@ -1,4 +1,5 @@
-package plugin;
+package view;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +15,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import controller.PluginCore;
+
+import plugin.Plugin;
 
 public class GUIWhyNot extends JFrame {
 	public JFrame frame;
