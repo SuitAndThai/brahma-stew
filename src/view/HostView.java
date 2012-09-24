@@ -103,12 +103,16 @@ public class HostView extends JFrame {
 	}
 
 	public void removed(Plugin plugin) {
+		this.listModel.addElement(plugin.getId());
+		plugin.stop();
 		bottomLabel.setText("The " + plugin.getId()
 				+ " plugin has been recently removed!");
 
 	}
 
 	public void add(Plugin plugin) {
+		this.listModel.removeElement(plugin.getId());
+		
 		bottomLabel.setText("The " + plugin.getId()
 				+ " plugin has been recently added!");
 

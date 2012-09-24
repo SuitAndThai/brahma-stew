@@ -48,16 +48,12 @@ public class PluginCore {
 
 	public void addPlugin(Plugin plugin) {
 		this.idToPlugin.put(plugin.getId(), plugin);
-		GUI.listModel.addElement(plugin.getId());
 		GUI.add(plugin);
 	}
 
 	public void removePlugin(String id) {
 		Plugin plugin = this.idToPlugin.remove(id);
-		GUI.listModel.removeElement(id);
-
 		// Stop the plugin if it is still running
-		plugin.stop();
 
 		GUI.removed(plugin);
 	}
