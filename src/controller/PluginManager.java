@@ -59,8 +59,12 @@ public class PluginManager implements Runnable {
 		String className = mainAttribs.getValue("Plugin-Class");
 		URL[] urls = new URL[] { bundlePath.toUri().toURL() };
 		ClassLoader classLoader = new URLClassLoader(urls);
-		Class<?> pluginClass = classLoader.loadClass(className);
-
+		
+		// find dependencies
+//		String deps = mainAttribs.getValue("Deps");
+//		System.out.println("HERE!!! " + deps);
+		
+		Class<?> pluginClass = classLoader.loadClass(className);		
 		// Create a new instance of the plugin class and add to the core
 		Plugin plugin = (Plugin) pluginClass.newInstance();
 		this.core.addPlugin(plugin);
