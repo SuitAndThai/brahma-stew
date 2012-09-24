@@ -21,7 +21,6 @@ import controller.PluginCore;
 import plugin.Plugin;
 
 public class HostView extends JFrame {
-	public JFrame frame;
 	private JPanel contentPane;
 	public JLabel bottomLabel;
 	private JList sideList;
@@ -29,17 +28,18 @@ public class HostView extends JFrame {
 	private JPanel centerEnvelope;
 	private Plugin currentPlugin;
 
-	public HostView() {
+	public HostView(String title) {
 		// Lets create the elements that we will need
-		frame = new JFrame("Pluggable Board Application");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle(title);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		contentPane = (JPanel) frame.getContentPane();
+		contentPane = (JPanel) this.getContentPane();
 		contentPane.setPreferredSize(new Dimension(700, 500));
 		bottomLabel = new JLabel("No plugins registered yet!");
 
 		listModel = new DefaultListModel<String>();
-		sideList = new JList(this.listModel);
+		JList jList = new JList(this.listModel);
+		sideList = jList;
 		sideList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sideList.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane scrollPane = new JScrollPane(sideList);

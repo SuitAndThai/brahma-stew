@@ -14,7 +14,7 @@ public class PluginCore {
 
 	// Plugin manager
 	PluginManager pluginManager;
-	HostView GUI = new HostView();
+	HostView GUI = new HostView("Brahma host View");
 
 	public PluginCore() {
 		idToPlugin = new HashMap<String, Plugin>();
@@ -32,8 +32,8 @@ public class PluginCore {
 	public void start() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				GUI.frame.pack();
-				GUI.frame.setVisible(true);
+				GUI.pack();
+				GUI.setVisible(true);
 			}
 		});
 	}
@@ -41,7 +41,7 @@ public class PluginCore {
 	public void stop() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				GUI.frame.setVisible(false);
+				GUI.setVisible(false);
 			}
 		});
 	}
