@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,9 +17,12 @@ import javax.swing.event.ListSelectionListener;
 
 import controller.PluginCore;
 
+import plugin.GUIPlugin;
 import plugin.Plugin;
+import plugin.TextPlugin;
 
 public class HostView extends JFrame {
+	private TextPlugin TextPlugin;
 	private JPanel contentPane;
 	public JLabel bottomLabel;
 	private JList sideList;
@@ -35,7 +37,7 @@ public class HostView extends JFrame {
 
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setPreferredSize(new Dimension(700, 500));
-		bottomLabel = new JLabel("No plugins registered yet!");
+		bottomLabel = new JLabel();
 
 		listModel = new DefaultListModel<String>();
 		JList jList = new JList(this.listModel);
@@ -85,36 +87,46 @@ public class HostView extends JFrame {
 						centerEnvelope.removeAll();
 
 						// Create new working area
+
 						JPanel centerPanel = new JPanel();
 						centerEnvelope.add(centerPanel, BorderLayout.CENTER);
 
 						// Ask plugin to layout the working area
-						currentPlugin.layout(centerPanel);
-						contentPane.revalidate();
-						contentPane.repaint();
+						if (currentPlugin instanceof GUIPlugin) {
+							((plugin.GUIPlugin) currentPlugin)
+									.layout(centerPanel);
+							contentPane.revalidate();
+							contentPane.repaint();
 
+						}
+
+						
 						// Start the plugin
 						currentPlugin.start();
+						if (currentPlugin instanceof TextPlugin) {
+							((plugin.TextPlugin) currentPlugin)
+									.setText(bottomLabel);
+						} else {
+							bottomLabel.setText("The " + currentPlugin.getId()
+									+ " is Running!");
+						}
 
-						bottomLabel.setText("The " + currentPlugin.getId()
-								+ " is running!");
 					}
 				});
 	}
 
 	public void removed(Plugin plugin) {
-		this.listModel.addElement(plugin.getId());
+		this.listModel.removeElement(plugin.getId());
 		plugin.stop();
-		bottomLabel.setText("The " + plugin.getId()
-				+ " plugin has been recently removed!");
+		this.setTitle("The " + plugin.getId()
+				+ " plugin has been recently added!");
 
 	}
 
 	public void add(Plugin plugin) {
-		this.listModel.removeElement(plugin.getId());
-		
-		bottomLabel.setText("The " + plugin.getId()
-				+ " plugin has been recently added!");
+		this.listModel.addElement(plugin.getId());
+		this.setTitle("The " + plugin.getId()
+				+ " plugin has been recently removed!");
 
 	}
 }
