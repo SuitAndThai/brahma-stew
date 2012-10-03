@@ -15,12 +15,10 @@ import plugin.Plugin;
 import plugin.WatchDir;
 
 public class PluginManager implements Runnable {
-	private PluginCore core;
 	private WatchDir watchDir;
 	private HashMap<Path, Plugin> pathToPlugin;
 
 	public PluginManager(PluginCore core) throws IOException {
-		this.core = core;
 		this.pathToPlugin = new HashMap<Path, Plugin>();
 		watchDir = new WatchDir(this, FileSystems.getDefault().getPath(
 				"plugins"), false);
@@ -67,7 +65,7 @@ public class PluginManager implements Runnable {
 		Class<?> pluginClass = classLoader.loadClass(className);		
 		// Create a new instance of the plugin class and add to the core
 		Plugin plugin = (Plugin) pluginClass.newInstance();
-		this.core.addPlugin(plugin);
+		PluginCore.addPlugin(plugin);
 		this.pathToPlugin.put(bundlePath, plugin);
 
 		// Release the jar resources
@@ -77,7 +75,7 @@ public class PluginManager implements Runnable {
 	public void unloadBundle(Path bundlePath) {
 		Plugin plugin = this.pathToPlugin.remove(bundlePath);
 		if (plugin != null) {
-			this.core.removePlugin(plugin.getId());
+			PluginCore.removePlugin(plugin.getId());
 		}
 	}
 }

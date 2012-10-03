@@ -14,7 +14,7 @@ public class PluginCore {
 
 	// Plugin manager
 	PluginManager pluginManager;
-	HostView GUI = new HostView("Brahma host View");
+	static HostView GUI = new HostView("Brahma host View");
 
 	public PluginCore() {
 		idToPlugin = new HashMap<String, Plugin>();
@@ -46,15 +46,14 @@ public class PluginCore {
 		});
 	}
 
-	public void addPlugin(Plugin plugin) {
-		this.idToPlugin.put(plugin.getId(), plugin);
+	public static void addPlugin(Plugin plugin) {
+		idToPlugin.put(plugin.getId(), plugin);
 		GUI.add(plugin);
 	}
 
-	public void removePlugin(String id) {
-		Plugin plugin = this.idToPlugin.remove(id);
+	public static void removePlugin(String id) {
+		Plugin plugin = idToPlugin.remove(id);
 		// Stop the plugin if it is still running
-
 		GUI.removed(plugin);
 	}
 }

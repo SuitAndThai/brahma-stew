@@ -84,14 +84,14 @@ public class HostView extends JFrame implements KeyListener {
 		this.listModel.removeElement(plugin.getId());
 		plugin.stop();
 		this.setTitle("The " + plugin.getId()
-				+ " plugin has been recently added!");
+				+ " plugin has been recently removed!");
 
 	}
 
 	public void add(Plugin plugin) {
 		this.listModel.addElement(plugin.getId());
 		this.setTitle("The " + plugin.getId()
-				+ " plugin has been recently removed!");
+				+ " plugin has been recently added!");
 
 	}
 
@@ -112,7 +112,7 @@ public class HostView extends JFrame implements KeyListener {
 
 	public void keys(KeyEvent e) {
 		switch (e.getKeyChar()) {
-		
+
 		// PRESS ENTER TO START A NEW PLUGIN
 		case KeyEvent.VK_ENTER:
 
@@ -125,35 +125,35 @@ public class HostView extends JFrame implements KeyListener {
 			if (!currentPlugins.contains(currentPlugin)) {
 				currentPlugins.add(currentPlugin);
 			}
-				// Clear previous working area
-				centerEnvelope.removeAll();
+			// Clear previous working area
+			centerEnvelope.removeAll();
 
-				// Create new working area
+			// Create new working area
 
-				JPanel centerPanel = new JPanel();
-				centerEnvelope.add(centerPanel, BorderLayout.CENTER);
+			JPanel centerPanel = new JPanel();
+			centerEnvelope.add(centerPanel, BorderLayout.CENTER);
 
-				// Ask plugin to layout the working area
-				if (currentPlugin instanceof GUIPlugin) {
-					((plugin.GUIPlugin) currentPlugin).layout(centerPanel);
-					contentPane.revalidate();
-					contentPane.repaint();
+			// Ask plugin to layout the working area
+			if (currentPlugin instanceof GUIPlugin) {
+				((plugin.GUIPlugin) currentPlugin).layout(centerPanel);
+				contentPane.revalidate();
+				contentPane.repaint();
 
-				}
-
-				// Start the plugin
-				currentPlugin.start();
-				if (currentPlugin instanceof TextPlugin) {
-					((plugin.TextPlugin) currentPlugin).setText(bottomLabel);
-				} else {
-					bottomLabel.setText("The " + currentPlugin.getId()
-							+ " is Running!");
-				}
-			
+			}
+			this.setTitle("The " + currentPlugin.getId()
+					+ " plugin has been started!");
+			// Start the plugin
+			currentPlugin.start();
+			if (currentPlugin instanceof TextPlugin) {
+				((plugin.TextPlugin) currentPlugin).setText(bottomLabel);
+			} else {
+				bottomLabel.setText("The " + currentPlugin.getId()
+						+ " is Running!");
+			}
 
 			break;
-			
-			//PRESS DELETE TO STOP THE SELECTED PLUGIN
+
+		// PRESS DELETE TO STOP THE SELECTED PLUGIN
 		case KeyEvent.VK_DELETE:
 			int index = sideList.getSelectedIndex();
 			String id2 = listModel.elementAt(index);
@@ -169,7 +169,8 @@ public class HostView extends JFrame implements KeyListener {
 						currentPlugins.remove(plugin);
 						plugin.stop();
 						this.setTitle("The" + plugin.getId()
-								+ "has been removed");
+								+ " plugin has been removed");
+						bottomLabel.setText("");
 						return;
 
 					}
