@@ -1,15 +1,14 @@
 package recordextension;
 
 import java.awt.BorderLayout;
-import java.util.Set;
 
 import javax.swing.JPanel;
 
 
+import plugin.GUIPlugin;
 import plugin.Plugin;
-import plugin.IPlugin;
 
-public class PersonalRecordExtension extends Plugin {
+public class PersonalRecordExtension extends Plugin implements GUIPlugin{
 	public static final String PLUGIN_ID = "Personal Record";
 
 	JPanel panel;
@@ -43,9 +42,5 @@ public class PersonalRecordExtension extends Plugin {
 
 	}
 
-	@Override
-	public Set<String> getDependencies() {		
-		return null;
-	}
 
 }
