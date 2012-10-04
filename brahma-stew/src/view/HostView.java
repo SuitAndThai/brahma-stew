@@ -26,6 +26,8 @@ import plugin.Plugin;
 import plugin.TextPlugin;
 import controller.PluginCore;
 
+// Modified by Brandon Knight (knightbk@rose-hulman.edu)
+
 public class HostView extends JFrame implements KeyListener {
 	private JPanel contentPane;
 	public JLabel bottomLabel;

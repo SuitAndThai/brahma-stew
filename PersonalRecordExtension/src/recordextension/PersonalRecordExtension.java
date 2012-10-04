@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import plugin.GUIPlugin;
 import plugin.Plugin;
 
+
+// Modified by Brandon Knight (knightbk@rose-hulman.edu)
+
 public class PersonalRecordExtension extends Plugin implements GUIPlugin{
 	public static final String PLUGIN_ID = "Personal Record";
 

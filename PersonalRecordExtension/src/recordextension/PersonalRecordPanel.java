@@ -21,6 +21,7 @@ import javax.swing.JTextField;
  * A simple personal record application.
  * 
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
+ * modified by Brandon Knight (knightbk@rose-hulman.edu)
  */
 public class PersonalRecordPanel extends JPanel {
 	public String name;
