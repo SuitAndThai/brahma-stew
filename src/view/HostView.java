@@ -27,7 +27,6 @@ import plugin.TextPlugin;
 import controller.PluginCore;
 
 public class HostView extends JFrame implements KeyListener {
-	private TextPlugin TextPlugin;
 	private JPanel contentPane;
 	public JLabel bottomLabel;
 	private JList sideList;
